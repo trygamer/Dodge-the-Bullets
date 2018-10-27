@@ -8,20 +8,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
+	Victim v = new Victim(250 - 25, 400 - 25, 50, 50, 5);
+
 	Timer t;
-	public static BufferedImage alienImg;
+	public static BufferedImage egImg;
 
-	public static BufferedImage rocketImg;
-
-	public static BufferedImage bulletImg;
-
-	public static BufferedImage spaceImg;
 	final static int MENU_STATE = 0;
 
 	final static int GAME_STATE = 1;
@@ -38,6 +37,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		t = new Timer(1000 / 60, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
 		startFont = new Font("Arial", Font.PLAIN, 30);
+		try {
+			egImg = ImageIO.read(this.getClass().getResourceAsStream("hWn54.jpg"));
+		}
+
+		catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
 	}
 
 	void updateEndState() {
@@ -55,26 +65,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.RED);
 		g.drawString("Press ENTER to start", 100, 400);
 		g.setFont(startFont);
-		g.setColor(Color.RED);
-		g.drawString("Press space for intructions", 70, 700);
 
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
-
+		v.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
 		g.setColor(Color.RED);
 
-		g.fillRect(0, 0, DTB.width, DTB.height);
+		g.drawImage(GamePanel.egImg, 0, 0, null);
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
 		g.drawString("Game Over", 100, 100);
 		g.setFont(startFont);
 		g.setColor(Color.BLACK);
-		g.drawString("You killed " + " enemies", 100, 400);
+		g.drawString("You lasted for " + " seconds", 100, 400);
 		g.setColor(Color.BLACK);
 		g.drawString("Press ENTER to restart", 100, 700);
 
@@ -151,6 +158,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU_STATE;
 			}
 		}
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("t");
+			v.x += v.speed;
+		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
+			v.x -= v.speed;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			System.out.println("t");
+			v.y += v.speed;
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+
+			v.y -= v.speed;
+		}
+
 	}
 
 	@Override
