@@ -3,7 +3,7 @@ package the_game;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Victim extends GameObject  {
+public class Victim extends GameObjectDTB {
 
 	int speed;
 
@@ -20,7 +20,6 @@ public class Victim extends GameObject  {
 
 	public void update() {
 		super.update();
-		
 
 	}
 

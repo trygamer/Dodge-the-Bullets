@@ -16,20 +16,18 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
- static int xMin =0;
- 
- static int xMAx= DTB.width - 50;
- 
- static int yMin=0;
- 
- static int yMAx=DTB.height-50;
-	
-	
-	Victim v = new Victim(250 - 25, 400 - 25, 50, 50, 5);
+	static int xMin = 0;
 
-	
-	
-	
+	static int xMAx = DTB.width - 50;
+
+	static int yMin = 0;
+
+	static int yMAx = DTB.height - 50;
+
+	Victim v = new Victim(250 - 25, 400 - 25, 10, 10, 5);
+
+	ObjectMananger om = new ObjectMananger();
+	Direction_2 D2 = new Direction_2();
 	Timer t;
 	public static BufferedImage egImg;
 
@@ -61,9 +59,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 	}
-	
-	
-	
 
 	void updateEndState() {
 
@@ -85,7 +80,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics g) {
 		v.draw(g);
-		
+		om.draw(g);
+
 	}
 
 	void drawEndState(Graphics g) {
@@ -126,6 +122,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	private void updateGameState() {
 		// TODO Auto-generated method stub
 		v.update();
+		om.manageEnemies();
+		om.update();
+
 	}
 
 	private void updateMenuState() {

@@ -2,15 +2,14 @@ package the_game;
 
 import java.awt.Graphics;
 
-public class Bullets extends GameObjectDTB {
-
+public class Right_Bullet {
 	int width = 50;
 
 	int height = 50;
 
-	public Bullets(int x1, int y1, int width1, int height1) {
+	public void Right_Bullets(int x1, int y1, int width1, int height1) {
 
-		super(x1, y1, width1, height1);
+	
 
 		x = x1;
 		y = y1;
@@ -26,7 +25,8 @@ public class Bullets extends GameObjectDTB {
 
 	public void update() {
 		super.update();
-		y += 1;
+		x += 1;
 	}
 
+}
 }
