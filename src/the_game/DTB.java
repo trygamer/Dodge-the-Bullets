@@ -10,6 +10,9 @@ public class DTB {
 	static int height = 800;
 	static int width = 500;
 	GamePanel gp;
+	static int mheight = -800;
+	static int mwidth = -500;
+	
 
 	public static void main(String[] args) {
 		DTB li = new DTB();

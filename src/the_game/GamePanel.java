@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Victim v = new Victim(250 - 25, 400 - 25, 10, 10, 5);
 
 	ObjectMananger om = new ObjectMananger();
-	Direction_2 D2 = new Direction_2();
+	
 	Timer t;
 	public static BufferedImage egImg;
 
@@ -122,8 +122,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	private void updateGameState() {
 		// TODO Auto-generated method stub
 		v.update();
+		om.manageEnemiesR();
 		om.manageEnemies();
 		om.update();
+		om.manageEnemiesUP();
+		om.manageEnemiesLeft();
+		
 
 	}
 

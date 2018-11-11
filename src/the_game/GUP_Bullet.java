@@ -2,7 +2,7 @@ package the_game;
 
 import java.awt.Graphics;
 
-public class Right_Bullet extends GameObjectDTB {
+public class GUP_Bullet extends GameObjectDTB {
 
 		
 		// TODO Auto-generated constructor stub
@@ -12,7 +12,7 @@ public class Right_Bullet extends GameObjectDTB {
 
 	int height = 50;
 
-	public Right_Bullet(int x1, int y1, int width1, int height1) {
+	public GUP_Bullet(int x1, int y1, int width1, int height1) {
 	
 		super(x1, y1, width1, height1);
 
@@ -30,7 +30,7 @@ public class Right_Bullet extends GameObjectDTB {
 
 	public void update() {
 		super.update();
-		x += 1;
+		y -= 1;
 	}
 
 }
