@@ -21,6 +21,7 @@ public class Bullets extends GameObjectDTB {
 	}
 
 	public void draw(Graphics g) {
+		super.draw(g);
 		g.drawRect(x, y, width, height);
 	}
 

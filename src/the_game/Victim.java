@@ -9,7 +9,7 @@ public class Victim extends GameObjectDTB {
 
 	Victim(int x1, int y1, int width1, int height1, int speed1) {
 		super(x1, y1, width1, height1);
-		x= x1;
+		x = x1;
 		y = y1;
 		width = width1;
 		height = height1;
@@ -24,6 +24,7 @@ public class Victim extends GameObjectDTB {
 	}
 
 	public void draw(Graphics g) {
+
 		g.setColor(Color.BLACK);
 		g.fillRect(x, y, height, width);
 

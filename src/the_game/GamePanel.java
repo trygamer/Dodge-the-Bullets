@@ -26,8 +26,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Victim v = new Victim(250 - 25, 400 - 25, 10, 10, 5);
 
-	ObjectMananger om = new ObjectMananger();
-	
+	ObjectManangerDTB om = new ObjectManangerDTB(v);
+
 	Timer t;
 	public static BufferedImage egImg;
 
@@ -42,6 +42,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font infoFont;
 
 	static int currentState = MENU_STATE;
+
+	long ScoreTimer;
 
 	GamePanel() {
 		t = new Timer(1000 / 60, this);
@@ -79,6 +81,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
+		ScoreTimer = System.currentTimeMillis();
 		v.draw(g);
 		om.draw(g);
 
@@ -93,9 +96,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Game Over", 100, 100);
 		g.setFont(startFont);
 		g.setColor(Color.BLACK);
-		g.drawString("You lasted for " + " seconds", 100, 400);
+		g.drawString("You lasted for " + ScoreTimer + " seconds", 100, 400);
 		g.setColor(Color.BLACK);
 		g.drawString("Press ENTER to restart", 100, 700);
+		System.out.println(ScoreTimer);
 
 	}
 
@@ -127,7 +131,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		om.update();
 		om.manageEnemiesUP();
 		om.manageEnemiesLeft();
-		
+		om.checkCollision();
 
 	}
 
@@ -170,7 +174,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState += 1;
-			System.out.println(currentState);
 
 			if (currentState > END_STATE) {
 
@@ -178,14 +181,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("t");
+
 			v.x += v.speed;
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
 			v.x -= v.speed;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("t");
+
 			v.y += v.speed;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 
