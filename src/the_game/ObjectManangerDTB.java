@@ -6,11 +6,15 @@ import java.util.Random;
 
 public class ObjectManangerDTB {
 	long enemyTimer = 0;
+	long enemyTimerr = 0;
 	int enemySpawnTime = 1000;
 
-	long enemyTimer1 = 0;
+	long enemyTimer1= 0;
+	long enemyTimer11 = 0;
 	long enemyTimer2 = 0;
+	long enemyTimer22 = 0;
 	long enemyTimer3 = 0;
+	long enemyTimer33 = 0;
 
 	Victim v;
 
@@ -26,10 +30,19 @@ public class ObjectManangerDTB {
 	}
 
 	public void manageEnemies() {
+		
+		enemyTimer=eneyTimer-enemyTimerr
+			
+			
+		
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			addBullets(new Bullets(new Random().nextInt(DTB.width), 0, 5, 35));
 
 			enemyTimer = System.currentTimeMillis();
+			
+			if(enemyTimer%1000=0){
+system.Out.Print(enemyTimer);
+			}
 		}
 
 	}
