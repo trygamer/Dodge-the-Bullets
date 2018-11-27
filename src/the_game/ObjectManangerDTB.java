@@ -9,7 +9,7 @@ public class ObjectManangerDTB {
 	long enemyTimerr = 0;
 	int enemySpawnTime = 1000;
 
-	long enemyTimer1= 0;
+	long enemyTimer1 = 0;
 	long enemyTimer11 = 0;
 	long enemyTimer2 = 0;
 	long enemyTimer22 = 0;
@@ -26,23 +26,19 @@ public class ObjectManangerDTB {
 
 	public void addBullets(GameObjectDTB AN1) {
 		b.add(AN1);
+		if (GamePanel.currentState == 0) {
+			b.remove(AN1);
+		}
 
 	}
 
 	public void manageEnemies() {
-		
-		enemyTimer=eneyTimer-enemyTimerr
-			
-			
-		
+
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			addBullets(new Bullets(new Random().nextInt(DTB.width), 0, 5, 35));
 
 			enemyTimer = System.currentTimeMillis();
-			
-			if(enemyTimer%1000=0){
-system.Out.Print(enemyTimer);
-			}
+
 		}
 
 	}

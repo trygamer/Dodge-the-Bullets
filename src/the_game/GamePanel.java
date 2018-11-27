@@ -45,6 +45,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	long ScoreTimer;
 
+	long ScoreTimerr;
+	int SecondCount = 51;
+	int SecondCountt = 0;
+	int SecondCounttt = 100;
+	int FinalCount = 0;
+
 	GamePanel() {
 		t = new Timer(1000 / 60, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -77,11 +83,33 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.RED);
 		g.drawString("Press ENTER to start", 100, 400);
 		g.setFont(startFont);
+		FinalCount = 0;
 
 	}
 
 	void drawGameState(Graphics g) {
-		ScoreTimer = System.currentTimeMillis();
+		ScoreTimer = ScoreTimer - ScoreTimerr;
+		if (System.currentTimeMillis() - ScoreTimer >= SecondCount) {
+			SecondCountt += 1;
+			System.out.println(SecondCountt + "sc");
+
+		}
+		if (SecondCountt >= SecondCount) {
+			SecondCountt = 0;
+			FinalCount += 1;
+			System.out.println(FinalCount + "fc");
+		}
+
+		// ScoreTimer = System.currentTimeMillis();
+		// ScoreTimerr = System.currentTimeMillis();
+		// ScoreTimer = ScoreTimer - ScoreTimerr;
+
+		// if (ScoreTimer % 1000 == 0) {
+		// ScoreTimer = ScoreTimer / 1000;
+		// }
+		g.setFont(startFont);
+		g.setColor(Color.BLUE);
+		g.drawString(FinalCount + " seconds", 100, 100);
 		v.draw(g);
 		om.draw(g);
 
@@ -96,10 +124,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Game Over", 100, 100);
 		g.setFont(startFont);
 		g.setColor(Color.BLACK);
-		g.drawString("You lasted for " + ScoreTimer + " seconds", 100, 400);
+		g.drawString("You lasted for " + FinalCount + " seconds", 100, 400);
 		g.setColor(Color.BLACK);
 		g.drawString("Press ENTER to restart", 100, 700);
-		System.out.println(ScoreTimer);
 
 	}
 
@@ -178,7 +205,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState > END_STATE) {
 
 				currentState = MENU_STATE;
+				currentState = 0;
 			}
+
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
