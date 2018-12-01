@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	static int yMAx = DTB.height - 50;
 
-	Victim v = new Victim(250 - 25, 400 - 25, 10, 10, 5);
+	Victim v = new Victim();
 
 	ObjectManangerDTB om = new ObjectManangerDTB(v);
 

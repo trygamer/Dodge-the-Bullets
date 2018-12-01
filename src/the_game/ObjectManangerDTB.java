@@ -22,12 +22,12 @@ public class ObjectManangerDTB {
 		this.v = v;
 	}
 
-	ArrayList<GameObjectDTB> b = new ArrayList<GameObjectDTB>();
+	ArrayList<GameObjectDTB> bullets = new ArrayList<GameObjectDTB>();
 
 	public void addBullets(GameObjectDTB AN1) {
-		b.add(AN1);
+		bullets.add(AN1);
 		if (GamePanel.currentState == 0) {
-			b.remove(AN1);
+			bullets.remove(AN1);
 		}
 
 	}
@@ -71,27 +71,30 @@ public class ObjectManangerDTB {
 
 	public void update() {
 
-		for (int i = 0; i < b.size(); i++) {
-			b.get(i).update();
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).update();
 
 		}
 	}
 
 	public void draw(Graphics g) {
 
-		for (int i = 0; i < b.size(); i++) {
-			b.get(i).draw(g);
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).draw(g);
 
 		}
 
 	}
 
 	public void checkCollision() {
-		for (GameObjectDTB a : b) {
+		for (GameObjectDTB a : bullets) {
 
 			if (v.collisionBox.intersects(a.collisionBox)) {
 				System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
 				GamePanel.currentState = GamePanel.END_STATE;
+				bullets = new ArrayList<GameObjectDTB>();
+				v = new Victim();
+				
 			}
 		}
 	}
