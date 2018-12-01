@@ -20,7 +20,10 @@ public class Victim extends GameObjectDTB {
 	public void draw(Graphics g) {
 
 		g.setColor(Color.BLACK);
-		g.fillRect(x, y, height, width);
+		g.drawImage(GamePanel.victimImg,x, y, height, width, null);
+		g.setColor(Color.RED);
+		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+
 
 	}
 

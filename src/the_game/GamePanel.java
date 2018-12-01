@@ -30,6 +30,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer t;
 	public static BufferedImage egImg;
+	
+	 
+
+	    public static BufferedImage victimImg;
+
+	    public static BufferedImage bulletImg;
+
+	    public static BufferedImage skyImg;
 
 	final static int MENU_STATE = 0;
 
@@ -57,6 +65,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		startFont = new Font("Arial", Font.PLAIN, 30);
 		try {
 			egImg = ImageIO.read(this.getClass().getResourceAsStream("hWn54.jpg"));
+			
+
+			victimImg = ImageIO.read(this.getClass().getResourceAsStream("UFO for DTBS.png"));
+
+	         
+
+	              bulletImg = ImageIO.read(this.getClass().getResourceAsStream("crop for rocket.png"));
+
+	              skyImg = ImageIO.read(this.getClass().getResourceAsStream("air photo.jpeg"));
+
+	    
+
+	      
 		}
 
 		catch (IOException e) {
@@ -88,6 +109,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
+		g.drawImage(GamePanel.skyImg, 0,0,DTB.width, DTB.height, null);
 		ScoreTimer = ScoreTimer - ScoreTimerr;
 		if (System.currentTimeMillis() - ScoreTimer >= SecondCount) {
 			SecondCountt += 1;

@@ -8,9 +8,6 @@ public class Right_Bullet extends GameObjectDTB {
 		// TODO Auto-generated constructor stub
 	
 
-	int width = 50;
-
-	int height = 50;
 
 	public Right_Bullet(int x1, int y1, int width1, int height1) {
 	

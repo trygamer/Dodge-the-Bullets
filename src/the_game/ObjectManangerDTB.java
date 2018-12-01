@@ -62,7 +62,7 @@ public class ObjectManangerDTB {
 
 	public void manageEnemiesLeft() {
 		if (System.currentTimeMillis() - enemyTimer3 >= enemySpawnTime) {
-			addBullets(new LeftBullet(500, new Random().nextInt(DTB.height), 35, 5));
+			addBullets(new LeftBullet(500, new Random().nextInt(DTB.height), 70, 10));
 
 			enemyTimer3 = System.currentTimeMillis();
 		}
