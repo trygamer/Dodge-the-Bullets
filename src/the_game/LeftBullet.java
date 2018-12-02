@@ -19,7 +19,7 @@ public class LeftBullet extends GameObjectDTB {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(GamePanel.bulletImg, x, y, width, height, null, null);
+		g.drawImage(GamePanel.lbulletImg, x, y, width, height, null, null);
 		g.setColor(Color.RED);
 		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 

@@ -1,5 +1,6 @@
 package the_game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class GUP_Bullet extends GameObjectDTB {
@@ -25,7 +26,9 @@ public class GUP_Bullet extends GameObjectDTB {
 	}
 
 	public void draw(Graphics g) {
-		g.drawRect(x, y, width, height);
+		g.drawImage(GamePanel.ubulletImg, x, y, width, height, null, null);
+		g.setColor(Color.RED);
+		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 	}
 
 	public void update() {

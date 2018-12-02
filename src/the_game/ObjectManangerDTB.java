@@ -16,6 +16,11 @@ public class ObjectManangerDTB {
 	long enemyTimer3 = 0;
 	long enemyTimer33 = 0;
 
+	
+	public void gameRestart() {
+	bullets = new ArrayList<GameObjectDTB>();
+	
+	}
 	Victim v;
 
 	ObjectManangerDTB(Victim v) {
@@ -35,7 +40,7 @@ public class ObjectManangerDTB {
 	public void manageEnemies() {
 
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addBullets(new Bullets(new Random().nextInt(DTB.width), 0, 5, 35));
+			addBullets(new Bullets(new Random().nextInt(DTB.width), 0, 10, 70));
 
 			enemyTimer = System.currentTimeMillis();
 
@@ -45,7 +50,7 @@ public class ObjectManangerDTB {
 
 	public void manageEnemiesR() {
 		if (System.currentTimeMillis() - enemyTimer1 >= enemySpawnTime) {
-			addBullets(new Right_Bullet(0, new Random().nextInt(DTB.height), 35, 5));
+			addBullets(new Right_Bullet(0, new Random().nextInt(DTB.height), 70, 10));
 
 			enemyTimer1 = System.currentTimeMillis();
 		}
@@ -53,7 +58,7 @@ public class ObjectManangerDTB {
 
 	public void manageEnemiesUP() {
 		if (System.currentTimeMillis() - enemyTimer2 >= enemySpawnTime) {
-			addBullets(new GUP_Bullet(new Random().nextInt(DTB.width), 800, 5, 35));
+			addBullets(new GUP_Bullet(new Random().nextInt(DTB.width), 800, 10, 70));
 
 			enemyTimer2 = System.currentTimeMillis();
 		}
@@ -87,15 +92,49 @@ public class ObjectManangerDTB {
 	}
 
 	public void checkCollision() {
-		for (GameObjectDTB a : bullets) {
+		for (GameObjectDTB c : bullets) {
 
-			if (v.collisionBox.intersects(a.collisionBox)) {
+			if (v.collisionBox.intersects(c.collisionBox)) {
 				System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-				GamePanel.currentState = GamePanel.END_STATE;
-				bullets = new ArrayList<GameObjectDTB>();
-				v = new Victim();
+			GamePanel.currentState = GamePanel.END_STATE;
+		
 				
 			}
+			
+		
+		}
+		
+	
+		
+		
+	
+
+}
+	public void boundryChecker() {
+		if(bullets.x== DTB.width) {
+			GameObjectDTB.lisAlive=false;
+		}
+		if(Right_Bullet.x== DTB.width) {
+			GameObjectDTB.risAlive=false;
+		}
+		if(Bullets.x== DTB.width) {
+			GameObjectDTB.isAlive=false;
+		}
+		if(GUP_Bullet.x== DTB.width) {
+			GameObjectDTB.uisAlive=false;
 		}
 	}
+	
+	/*public void purgeObjects() {
+	for(int i=0 ;i< bullets.size();i++)	{
+
+		if(bullets.get(i).isAlive==false ) {
+			score ++;
+			bullets.remove(i);
+		}
+	}
+	
+		}
+
+}*/
 }

@@ -8,16 +8,32 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class GameObjectDTB {
+	 
+	
+		
+	
 	int x;
 
-	int y;
+	 int y;
 
-	int width;
+	 int width;
 
 	int height;
+	
+	
+	
 
 	Rectangle collisionBox;
 
+	
+	   static boolean isAlive=true;
+	   
+	   static boolean lisAlive=true;
+	   
+	   static boolean risAlive=true;
+	   
+	   static boolean uisAlive=true;
+	
 	public GameObjectDTB(int x1, int y1, int width1, int height1) {
 		// TODO Auto-generated constructor stub
 
