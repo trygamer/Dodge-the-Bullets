@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -31,20 +30,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Timer t;
 	public static BufferedImage egImg;
-	
-	 
 
-	    public static BufferedImage victimImg;
+	public static BufferedImage victimImg;
 
-	    public static BufferedImage  lbulletImg;
-	    
-	    public static BufferedImage  rbulletImg;
-	    
-	    public static BufferedImage  ubulletImg;
-	    
-	    public static BufferedImage  dbulletImg;
+	public static BufferedImage lbulletImg;
 
-	    public static BufferedImage skyImg;
+	public static BufferedImage rbulletImg;
+
+	public static BufferedImage ubulletImg;
+
+	public static BufferedImage dbulletImg;
+
+	public static BufferedImage skyImg;
+
+	public static BufferedImage vLiveImg;
 
 	final static int MENU_STATE = 0;
 
@@ -72,27 +71,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		startFont = new Font("Arial", Font.PLAIN, 30);
 		try {
 			egImg = ImageIO.read(this.getClass().getResourceAsStream("hWn54.jpg"));
-			
-	
 
 			victimImg = ImageIO.read(this.getClass().getResourceAsStream("UFO for DTBS.png"));
 
-	         
+			lbulletImg = ImageIO.read(this.getClass().getResourceAsStream("crop for rocket.png"));
 
-	              lbulletImg = ImageIO.read(this.getClass().getResourceAsStream("crop for rocket.png"));
+			skyImg = ImageIO.read(this.getClass().getResourceAsStream("air photo.jpeg"));
 
-	              skyImg = ImageIO.read(this.getClass().getResourceAsStream("air photo.jpeg"));
+			rbulletImg = ImageIO.read(this.getClass().getResourceAsStream("rightward.png"));
 
-	              rbulletImg = ImageIO.read(this.getClass().getResourceAsStream("rightward.png"));
+			ubulletImg = ImageIO.read(this.getClass().getResourceAsStream("upward.png"));
 
-	              ubulletImg = ImageIO.read(this.getClass().getResourceAsStream("upward.png"));
+			dbulletImg = ImageIO.read(this.getClass().getResourceAsStream("downward.png"));
 
-	              
-	              dbulletImg = ImageIO.read(this.getClass().getResourceAsStream("downward.png"));
+			vLiveImg = ImageIO.read(this.getClass().getResourceAsStream("MC_Heart.png"));
 
-	              
-	              
-	      
 		}
 
 		catch (IOException e) {
@@ -124,8 +117,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		
-		g.drawImage(GamePanel.skyImg, 0,0,DTB.width, DTB.height, null);
+
+		g.drawImage(GamePanel.skyImg, 0, 0, DTB.width, DTB.height, null);
 		ScoreTimer = ScoreTimer - ScoreTimerr;
 		if (System.currentTimeMillis() - ScoreTimer >= SecondCount) {
 			SecondCountt += 1;
@@ -134,7 +127,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (SecondCountt >= SecondCount) {
 			SecondCountt = 0;
 			FinalCount += 1;
-			
+
 		}
 
 		// ScoreTimer = System.currentTimeMillis();
@@ -196,6 +189,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		om.manageEnemiesUP();
 		om.manageEnemiesLeft();
 		om.checkCollision();
+		om.boundryChecker();
 
 	}
 
@@ -244,8 +238,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU_STATE;
 				currentState = 0;
 			}
-			
-			if(currentState==GAME_STATE) {
+
+			if (currentState == GAME_STATE) {
 				om.gameRestart();
 			}
 

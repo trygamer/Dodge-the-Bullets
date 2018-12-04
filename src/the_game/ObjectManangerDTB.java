@@ -1,8 +1,12 @@
 package the_game;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 public class ObjectManangerDTB {
 	long enemyTimer = 0;
@@ -16,15 +20,36 @@ public class ObjectManangerDTB {
 	long enemyTimer3 = 0;
 	long enemyTimer33 = 0;
 
-	
+	public static BufferedImage vLiveImg;
+
+	static int vLives = 3;
+
 	public void gameRestart() {
-	bullets = new ArrayList<GameObjectDTB>();
-	
+		vLives = 3;
+		bullets = new ArrayList<GameObjectDTB>();
+
+		v.x = 225;
+		v.y = 375;
+
 	}
+
 	Victim v;
 
 	ObjectManangerDTB(Victim v) {
 		this.v = v;
+		try {
+
+			vLiveImg = ImageIO.read(this.getClass().getResourceAsStream("MC_Heart.png"));
+
+		}
+
+		catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
 	}
 
 	ArrayList<GameObjectDTB> bullets = new ArrayList<GameObjectDTB>();
@@ -88,53 +113,67 @@ public class ObjectManangerDTB {
 			bullets.get(i).draw(g);
 
 		}
-
+		int mcheart = 50;
+		for (int i = 0; i < vLives; i++) {
+			g.drawImage(vLiveImg, 400, mcheart + (i * 10), 10, 10, null);
+		}
 	}
 
 	public void checkCollision() {
 		for (GameObjectDTB c : bullets) {
 
 			if (v.collisionBox.intersects(c.collisionBox)) {
-				System.out.println("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-			GamePanel.currentState = GamePanel.END_STATE;
-		
-				
+				vLives -= 1;
+				System.out.print(vLives);
+				bullets = new ArrayList<GameObjectDTB>();
+				v.x = 225;
+				v.y = 375;
+
 			}
-			
-		
-		}
-		
-	
-		
-		
-	
 
-}
+			if (vLives == 0) {
+				GamePanel.currentState = GamePanel.END_STATE;
+			}
+
+		}
+
+	}
+
 	public void boundryChecker() {
-		if(bullets.x== DTB.width) {
-			GameObjectDTB.lisAlive=false;
-		}
-		if(Right_Bullet.x== DTB.width) {
-			GameObjectDTB.risAlive=false;
-		}
-		if(Bullets.x== DTB.width) {
-			GameObjectDTB.isAlive=false;
-		}
-		if(GUP_Bullet.x== DTB.width) {
-			GameObjectDTB.uisAlive=false;
-		}
-	}
-	
-	/*public void purgeObjects() {
-	for(int i=0 ;i< bullets.size();i++)	{
 
-		if(bullets.get(i).isAlive==false ) {
-			score ++;
-			bullets.remove(i);
-		}
-	}
-	
+		for (GameObjectDTB bullet : bullets) {
+			if (bullet.x > DTB.width) {
+
+				bullet.isAlive = false;
+
+			}
+			if (bullet.x < 0 - bullet.width) {
+
+				bullet.isAlive = false;
+
+			}
+			if (bullet.y > DTB.height) {
+
+				bullet.isAlive = false;
+
+			}
+			if (bullet.y < 0 - bullet.height) {
+
+				bullet.isAlive = false;
+
+			}
 		}
 
-}*/
+	}
+
+	public void purgeObjects() {
+		for (int i = 0; i < bullets.size(); i++) {
+
+			if (!bullets.get(i).isAlive) {
+				bullets.remove(i);
+			}
+		}
+
+	}
+
 }
