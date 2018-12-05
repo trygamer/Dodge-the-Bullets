@@ -30,7 +30,7 @@ public class Bullets extends GameObjectDTB {
 
 	public void update() {
 		super.update();
-		y += 1;
+		y += 1+(GamePanel.challenge);;
 	}
 
 }

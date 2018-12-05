@@ -26,6 +26,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Victim v = new Victim();
 	
+	static int challenge = 0;
+	
 	The_moving_heart tmh = new The_moving_heart();
 
 	ObjectManangerDTB om = new ObjectManangerDTB(v, tmh);
@@ -131,6 +133,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (SecondCountt >= SecondCount) {
 			SecondCountt = 0;
 			FinalCount += 1;
+			
+			if (FinalCount%10==0) {
+				challenge += 1;
+				System.out.println(challenge);
+			}
 
 		}
 
@@ -252,17 +259,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
-			v.x += v.speed;
+			v.x += v.speed+(challenge);
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
-			v.x -= v.speed;
+			v.x -= v.speed+(challenge);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
-			v.y += v.speed;
+			v.y += v.speed+(challenge);
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 
-			v.y -= v.speed;
+			v.y -= v.speed+(challenge);
 		}
 
 	}

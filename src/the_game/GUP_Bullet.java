@@ -33,7 +33,7 @@ public class GUP_Bullet extends GameObjectDTB {
 
 	public void update() {
 		super.update();
-		y -= 1;
+		y -= 1+(GamePanel.challenge);
 	}
 
 }

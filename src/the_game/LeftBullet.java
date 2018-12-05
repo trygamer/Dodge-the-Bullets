@@ -27,7 +27,7 @@ public class LeftBullet extends GameObjectDTB {
 
 	public void update() {
 		super.update();
-		x -= 1;
+		x -= 1+(GamePanel.challenge);
 	}
 
 }
