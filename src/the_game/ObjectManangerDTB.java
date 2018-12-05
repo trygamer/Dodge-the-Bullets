@@ -22,6 +22,10 @@ public class ObjectManangerDTB {
 
 	public static BufferedImage vLiveImg;
 
+	
+	static boolean tired =false;
+	
+	Graphics g;
 	static int vLives = 3;
 
 	public void gameRestart() {
@@ -34,9 +38,12 @@ public class ObjectManangerDTB {
 	}
 
 	Victim v;
+	The_moving_heart tmh;
+	
 
-	ObjectManangerDTB(Victim v) {
+	ObjectManangerDTB(Victim v, The_moving_heart tmh) {
 		this.v = v;
+		this.tmh = tmh;
 		try {
 
 			vLiveImg = ImageIO.read(this.getClass().getResourceAsStream("MC_Heart.png"));
@@ -135,10 +142,28 @@ public class ObjectManangerDTB {
 				GamePanel.currentState = GamePanel.END_STATE;
 			}
 
+			
+			
+			
 		}
-
+		if (v.collisionBox.intersects(tmh.collisionBox)) {
+			if(ObjectManangerDTB.vLives<=5) {
+			vLives += 1;
+			
+			tired = false;
+			
+			
+			
+			
+			}
+		}
+		
 	}
 
+	
+	
+	
+	
 	public void boundryChecker() {
 
 		for (GameObjectDTB bullet : bullets) {

@@ -25,8 +25,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	static int yMAx = DTB.height - 50;
 
 	Victim v = new Victim();
+	
+	The_moving_heart tmh = new The_moving_heart();
 
-	ObjectManangerDTB om = new ObjectManangerDTB(v);
+	ObjectManangerDTB om = new ObjectManangerDTB(v, tmh);
+	
+	
 
 	Timer t;
 	public static BufferedImage egImg;
@@ -142,6 +146,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString(FinalCount + " seconds", 100, 100);
 		v.draw(g);
 		om.draw(g);
+		
+		
 
 	}
 
