@@ -1,7 +1,6 @@
 
 package the_game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -42,20 +41,26 @@ public class GameObjectDTB {
 	public void update() {
 
 		// TODO Auto-generated method stub
-		/*
-		 * if (x < GamePanel.xMin) { x = GamePanel.xMin; } else if (x > GamePanel.xMAx)
-		 * { x = GamePanel.xMAx; } if (y < GamePanel.yMin) { y = GamePanel.yMin; } else
-		 * if (y > GamePanel.yMAx) { y = GamePanel.yMAx; }
-		 */
+
+		if (x < GamePanel.xMin) {
+			x = GamePanel.xMin;
+		} else if (x > GamePanel.xMAx) {
+			x = GamePanel.xMAx;
+		}
+		if (y < GamePanel.yMin) {
+			y = GamePanel.yMin;
+		} else if (y > GamePanel.yMAx) {
+			y = GamePanel.yMAx;
+		}
+
 		collisionBox.setBounds(x, y, width, height);
 
 	}
 
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawRect(x, y, width, height);
-		g.setColor(Color.RED);
-		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		// g.drawRect(x, y, width, height); this line is making a red box for
+		// Bullets.jeve
 
 	}
 

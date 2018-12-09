@@ -9,7 +9,7 @@ public class Victim extends GameObjectDTB {
 
 	Victim() {
 		super(225, 375, 10, 10);
-	speed= 5;
+		speed = 5;
 	}
 
 	public void update() {
@@ -20,14 +20,9 @@ public class Victim extends GameObjectDTB {
 	public void draw(Graphics g) {
 
 		g.setColor(Color.BLACK);
-		g.drawImage(GamePanel.victimImg,x, y, height, width, null);
+		g.drawImage(GamePanel.victimImg, x, y, height, width, null);
 		g.setColor(Color.RED);
-		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
-
 
 	}
 
-	
-	
-	
 }

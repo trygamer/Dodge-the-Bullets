@@ -22,9 +22,8 @@ public class ObjectManangerDTB {
 
 	public static BufferedImage vLiveImg;
 
-	
-	static boolean tired =false;
-	
+	static boolean tired = false;
+
 	Graphics g;
 	static int vLives = 3;
 
@@ -39,7 +38,6 @@ public class ObjectManangerDTB {
 
 	Victim v;
 	The_moving_heart tmh;
-	
 
 	ObjectManangerDTB(Victim v, The_moving_heart tmh) {
 		this.v = v;
@@ -112,6 +110,7 @@ public class ObjectManangerDTB {
 			bullets.get(i).update();
 
 		}
+		tmh.update();
 	}
 
 	public void draw(Graphics g) {
@@ -124,6 +123,8 @@ public class ObjectManangerDTB {
 		for (int i = 0; i < vLives; i++) {
 			g.drawImage(vLiveImg, 400, mcheart + (i * 10), 10, 10, null);
 		}
+
+		tmh.draw(g);
 	}
 
 	public void checkCollision() {
@@ -142,51 +143,40 @@ public class ObjectManangerDTB {
 				GamePanel.currentState = GamePanel.END_STATE;
 			}
 
-			
-			
-			
 		}
 		if (v.collisionBox.intersects(tmh.collisionBox)) {
-			if(ObjectManangerDTB.vLives<=5) {
-			vLives += 1;
-			
-			tired = false;
-			
-			
-			
-			
+			if (ObjectManangerDTB.vLives <= 5) {
+				vLives += 1;
+
+				tired = false;
+
 			}
+
 		}
-		
+
 	}
 
-	
-	
-	
-	
 	public void boundryChecker() {
 
-		for (GameObjectDTB bullet : bullets) {
-			if (bullet.x > DTB.width) {
+		if (v.x > DTB.width) {
+			v.x = DTB.width - 10;
+			GameObjectDTB.isAlive = false;
 
-				bullet.isAlive = false;
+		}
+		if (v.x < 0) {
+			v.x += 10;
+			GameObjectDTB.isAlive = false;
 
-			}
-			if (bullet.x < 0 - bullet.width) {
+		}
+		if (v.y > DTB.height) {
+			v.y = DTB.height - 20;
+			GameObjectDTB.isAlive = false;
 
-				bullet.isAlive = false;
+		}
+		if (v.y < 0) {
+			v.y += 10;
+			GameObjectDTB.isAlive = false;
 
-			}
-			if (bullet.y > DTB.height) {
-
-				bullet.isAlive = false;
-
-			}
-			if (bullet.y < 0 - bullet.height) {
-
-				bullet.isAlive = false;
-
-			}
 		}
 
 	}
@@ -194,7 +184,7 @@ public class ObjectManangerDTB {
 	public void purgeObjects() {
 		for (int i = 0; i < bullets.size(); i++) {
 
-			if (!bullets.get(i).isAlive) {
+			if (!GameObjectDTB.isAlive) {
 				bullets.remove(i);
 			}
 		}

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -25,14 +26,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	static int yMAx = DTB.height - 50;
 
 	Victim v = new Victim();
-	
+
 	static int challenge = 0;
-	
-	The_moving_heart tmh = new The_moving_heart();
+
+	The_moving_heart tmh = new The_moving_heart(new Random().nextInt(xMAx), new Random().nextInt(yMAx), 10, 10);
 
 	ObjectManangerDTB om = new ObjectManangerDTB(v, tmh);
-	
-	
 
 	Timer t;
 	public static BufferedImage egImg;
@@ -56,6 +55,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final static int GAME_STATE = 1;
 
 	final static int END_STATE = 2;
+
+	final static int INTRO_STATE = 3;
 
 	Font titleFont;
 	Font startFont;
@@ -104,6 +105,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateEndState() {
+		challenge = 0;
 
 	}
 
@@ -133,8 +135,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (SecondCountt >= SecondCount) {
 			SecondCountt = 0;
 			FinalCount += 1;
-			
-			if (FinalCount%10==0) {
+
+			if (FinalCount % 10 == 0) {
 				challenge += 1;
 				System.out.println(challenge);
 			}
@@ -153,8 +155,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString(FinalCount + " seconds", 100, 100);
 		v.draw(g);
 		om.draw(g);
-		
-		
 
 	}
 
@@ -171,6 +171,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Press ENTER to restart", 100, 700);
 
+	}
+
+	void drawIntroState(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, DTB.width, DTB.height);
+
+		g.setFont(titleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("INSTRUCTIONS", 100, 100);
+		g.setFont(startFont);
+		g.setColor(Color.BLACK);
+		g.drawString("Your objective is to stay alive for as long as you can." + ""
+				+ "The longer you last the harder it gets." + "" + "Use the arrow keys to move around." + ""
+				+ "You start out with 3 lives and you can get up to a max of 5 lives " + ""
+				+ "Every time you hit the irregular heart you gain one life", 100, 400);
+		g.setColor(Color.BLACK);
+		g.drawString("Press ENTER to go back to menu", 100, 700);
 	}
 
 	@Override
@@ -230,6 +247,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			drawEndState(g);
 
+		} else if (current == INSTRUCTION) {
+
 		}
 	}
 
@@ -240,7 +259,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e, ) {
 		// TODO Auto-generated method stub
 
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -255,21 +274,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState == GAME_STATE) {
 				om.gameRestart();
 			}
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 
+				drawIntroState(null);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
-			v.x += v.speed+(challenge);
+			v.x += v.speed + (challenge);
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
-			v.x -= v.speed+(challenge);
+			v.x -= v.speed + (challenge);
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
-			v.y += v.speed+(challenge);
+			v.y += v.speed + (challenge);
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 
-			v.y -= v.speed+(challenge);
+			v.y -= v.speed + (challenge);
 		}
 
 	}

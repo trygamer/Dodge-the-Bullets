@@ -5,7 +5,6 @@ import java.awt.Graphics;
 
 public class LeftBullet extends GameObjectDTB {
 
-	
 	public LeftBullet(int x1, int y1, int width1, int height1) {
 
 		super(x1, y1, width1, height1);
@@ -21,13 +20,12 @@ public class LeftBullet extends GameObjectDTB {
 	public void draw(Graphics g) {
 		g.drawImage(GamePanel.lbulletImg, x, y, width, height, null, null);
 		g.setColor(Color.RED);
-		g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 
 	}
 
 	public void update() {
 		super.update();
-		x -= 1+(GamePanel.challenge);
+		x -= 1 + (GamePanel.challenge);
 	}
 
 }
