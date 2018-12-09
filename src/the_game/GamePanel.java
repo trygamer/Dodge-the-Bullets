@@ -182,12 +182,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("INSTRUCTIONS", 100, 100);
 		g.setFont(startFont);
 		g.setColor(Color.BLACK);
-		g.drawString("Your objective is to stay alive for as long as you can." + ""
-				+ "The longer you last the harder it gets." + "" + "Use the arrow keys to move around." + ""
-				+ "You start out with 3 lives and you can get up to a max of 5 lives " + ""
-				+ "Every time you hit the irregular heart you gain one life", 100, 400);
+		g.drawString("Your objective is to stay alive",5, 200); 
+				g.drawString(" for as long as you can.", 5, 250);
+		g.drawString("The longer you last the harder it gets.", 1 ,300);
+		g.drawString("Use the arrow keys to move around.", 5, 350);
+		g.drawString("You start out with 3 lives and ", 5 ,400);
+				g.drawString("you can get up to a max of 5 lives ",5,450);
+				g.drawString("Every time you hit the", 5 ,500);
+						g.drawString("irregular heart you gain one life",5, 550);
 		g.setColor(Color.BLACK);
-		g.drawString("Press ENTER to go back to menu", 100, 700);
+		g.drawString("Press ENTER to go back to menu", 50, 700);
 	}
 
 	@Override
@@ -206,6 +210,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			updateEndState();
 
 		}
+		
+		
 		repaint();
 
 	}
@@ -247,8 +253,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			drawEndState(g);
 
-		} else if (current == INSTRUCTION) {
+		} else if (currentState == INTRO_STATE) {
 
+			drawIntroState(g);
+			
 		}
 	}
 
@@ -259,7 +267,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e, ) {
+	public void keyPressed(KeyEvent e ) {
 		// TODO Auto-generated method stub
 
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -274,10 +282,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState == GAME_STATE) {
 				om.gameRestart();
 			}
+			
+			if(currentState ==INTRO_STATE ) {
+			currentState = MENU_STATE;
+			}
+		}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 
-				drawIntroState(null);
+				currentState= INTRO_STATE;
 		}
+		
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
 			v.x += v.speed + (challenge);
@@ -292,6 +306,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			v.y -= v.speed + (challenge);
 		}
+		
 
 	}
 
