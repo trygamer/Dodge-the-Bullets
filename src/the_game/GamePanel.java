@@ -119,6 +119,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(startFont);
 		g.setColor(Color.RED);
 		g.drawString("Press ENTER to start", 100, 400);
+		g.drawString("Press SPACE for instructions", 70, 600);
 		g.setFont(startFont);
 		FinalCount = 0;
 
